@@ -61,7 +61,7 @@
        state: present
        
    - name: Start the container
-     docker_cantainer:
+     docker_container:
        name: phpwebsite
        image: "shiva4983/phpwebsite:{{DOCKERID}}"
        state: started
