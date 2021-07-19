@@ -1,8 +1,8 @@
 - hosts: redhat
   become: yes
   vars:
-   pip_executable: /usr/bin/pip3
    pip_package: python3-pip
+   pip_executable: pip3 "{{ 'pip3' if pip_package.startswith('python3') else 'pip' }}"
    chromedriverURL_LINUX: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_linux64.zip
    chromedriverURL_WIN: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_win32.zip
    mytext: |
