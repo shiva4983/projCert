@@ -1,0 +1,81 @@
+- hosts: redhat
+  become: yes
+  vars:
+   chromedriverURL_LINUX: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_linux64.zip
+   chromedriverURL_WIN: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_win32.zip
+   mytext: |
+       [google-chrome]
+       name=google-chrome
+       baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+       enabled=1
+       gpgcheck=1
+       gpgkey=https://dl-ssl.google.com/linux/linux_signing_key.pub
+   updatetest: |
+
+  tasks:
+   - name: Creating a file with content
+     file:
+       path: "/etc/yum.repos.d/google-chrome.repo"
+       mode: 0777
+       owner: root
+       state: touch
+
+   - name: create File content
+     copy:
+       dest: "/etc/yum.repos.d/google-chrome.repo"
+       content: "{{ mytext }}"
+
+   - name: Install Chrome
+     yum:
+       name: google-chrome-stable
+       state: present
+       update_cache: yes
+
+   - name: Epel-release
+     yum:
+       name: epel-release
+       state: present
+       update_cache: yes
+     when: ansible_facts['os_family'] == "Amazon"
+
+   - name: install chromium
+     yum:
+       name: chromium
+       state: present
+     when: ansible_facts['os_family'] == "Amazon"
+
+   - name: install unzip to use unarchive lib
+     yum:
+       name: unzip
+       state: present
+
+   - name: download chrome driver and unzip
+     unarchive:
+       src: "{{chromedriverURL_LINUX}}"
+       dest: /usr/local/bin
+       remote_src: yes
+
+   - name: install docker
+     yum:
+       name: docker
+       state: present
+   
+  #  - name: run docker as service
+  #    service:
+  #      name: docker
+  #      state: started
+
+#Known issue with 2.9 resolved in 2.10 - https://github.com/DataDog/ansible-datadog/issues/289
+  #  - name: download chromedriver for windows os
+  #    ansible.windows.win_get_url:
+  #      url: "{{chromedriverURL_WIN}}"
+  #      dest: C:\Users\Administrator\chromedriver\chromedriver.zip
+  #    when: ansible_facts['os_family'] == "Windows"
+  
+  #  - name: unzip chrome webdriver for windows os
+  #    community.windows.win_unzip:
+  #      src: C:\Users\Administrator\chromedriver\chromedriver.zip
+  #      dest: C:\Users\Administrator\chromedriver
+  #      creates: C:\Users\Administrator\chromedriver
+  #    when: ansible_facts['os_family'] == "Windows"
+
