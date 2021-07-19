@@ -15,10 +15,10 @@
    updatetest: |
 
   tasks:
-   - name: Install python pip 1
-     yum:
-       name: python-pip
-       state: present
+#    - name: Install python pip 1
+#      yum:
+#        name: python-pip
+#        state: present
 
    - name: Install docker-py python module
      pip:
