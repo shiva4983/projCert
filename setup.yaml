@@ -13,6 +13,16 @@
    updatetest: |
 
   tasks:
+   - name: Install python pip
+     yum:
+       name: python-pip
+       state: present
+
+   - name: Install docker-py python module
+     pip:
+       name: docker-py
+       state: present
+         
    - name: Creating a file with content
      file:
        path: "/etc/yum.repos.d/google-chrome.repo"
@@ -86,4 +96,3 @@
   #      dest: C:\Users\Administrator\chromedriver
   #      creates: C:\Users\Administrator\chromedriver
   #    when: ansible_facts['os_family'] == "Windows"
-
