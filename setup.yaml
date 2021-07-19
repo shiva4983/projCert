@@ -15,6 +15,13 @@
    updatetest: |
 
   tasks:
+   - name: Epel-release
+     yum:
+       name: epel-release
+       state: present
+       update_cache: yes
+     when: ansible_facts['os_family'] == "Amazon"
+     
    - name: Install python pip 1
      yum:
        name: python-pip
@@ -42,13 +49,6 @@
        name: google-chrome-stable
        state: present
        update_cache: yes
-
-   - name: Epel-release
-     yum:
-       name: epel-release
-       state: present
-       update_cache: yes
-     when: ansible_facts['os_family'] == "Amazon"
 
    - name: install chromium
      yum:
