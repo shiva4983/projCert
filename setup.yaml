@@ -62,7 +62,7 @@
        
    - name: Start the container
      docker_cantainer:
-       name: 
+       name: phpwebsite
        image: "shiva4983/phpwebsite:{{DOCKERID}}"
        state: started
        published_ports:
