@@ -20,7 +20,7 @@
        name: epel-release
        state: present
        update_cache: yes
-     when: ansible_facts['os_family'] == "Amazon"
+#      when: ansible_facts['os_family'] == "Amazon"
      
    - name: Install python pip 1
      yum:
@@ -54,7 +54,7 @@
      yum:
        name: chromium
        state: present
-     when: ansible_facts['os_family'] == "Amazon"
+#      when: ansible_facts['os_family'] == "Amazon"
 
    - name: install unzip to use unarchive lib
      yum:
@@ -72,6 +72,11 @@
        name: docker
        state: present
        
+   - name: run docker as service
+     service:
+       name: docker
+       state: started
+       
    - name: Start the container
      docker_container:
        name: phpwebsite
@@ -80,10 +85,7 @@
        published_ports:
          - 0.0.0.0:8080:8080
    
-  #  - name: run docker as service
-  #    service:
-  #      name: docker
-  #      state: started
+ 
 
 #Known issue with 2.9 resolved in 2.10 - https://github.com/DataDog/ansible-datadog/issues/289
   #  - name: download chromedriver for windows os
