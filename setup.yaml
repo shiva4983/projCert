@@ -3,7 +3,7 @@
   vars:
 #    pip_executable: /usr/bin/pip3
 #    pip_package: python3-pip
-   chromedriverURL_LINUX: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_linux64.zip
+   chromedriverURL_LINUX: https://chromedriver.storage.googleapis.com/91.0.4472.101/chromedriver_linux64.zip
    chromedriverURL_WIN: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_win32.zip
    mytext: |
        [google-chrome]
