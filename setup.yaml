@@ -71,29 +71,14 @@
 #      yum:
 #        name: docker
 #        state: present
-<<<<<<< HEAD
+
        
 #    - name: run docker as service
 #      service:
 #        name: docker
 #        state: started
        
-=======
-       
-#    - name: run docker as service
-#      service:
-#        name: docker
-#        state: started
-       
->>>>>>> c9c59d31e144c40488b8a3ae1c469c9da31989de
-#    - name: Start the container
-#      docker_container:
-#        name: phpwebsite
-#        image: "shiva4983/phpwebsite:{{DOCKERID}}"
-#        state: started
-#        published_ports:
-#          - 0.0.0.0:8080:8080
-   
+ 
  
 
 #Known issue with 2.9 resolved in 2.10 - https://github.com/DataDog/ansible-datadog/issues/289
@@ -108,8 +93,5 @@
   #      src: C:\Users\Administrator\chromedriver\chromedriver.zip
   #      dest: C:\Users\Administrator\chromedriver
   #      creates: C:\Users\Administrator\chromedriver
-<<<<<<< HEAD
   #    when: ansible_facts['os_family'] == "Windows"
-=======
-  #    when: ansible_facts['os_family'] == "Windows"
->>>>>>> c9c59d31e144c40488b8a3ae1c469c9da31989de
+
