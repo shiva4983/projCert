@@ -18,4 +18,4 @@
        image: "shiva4983/phpwebsite:{{DOCKERID}}"
        state: started
        published_ports:
-         - 8080:80
+         - 8082:80
