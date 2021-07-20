@@ -1,3 +1,3 @@
 [servers]
 windows ansible_host=172.31.4.102 ansible_port=5986 ansible_connection=winrm ansible_winrm_server_cert_validation=ignore ansible_winrm_transport=ntlm ansible_user=Administrator ansible_os_family=windows
-redhat ansible_host=172.31.3.26 ansible_user=ec2-user ansible_os_family=linux
+redhat ansible_host=172.31.42.234 ansible_user=ec2-user ansible_os_family=linux

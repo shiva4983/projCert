@@ -1,6 +1,8 @@
 - hosts: redhat
   become: yes
   vars:
+#    pip_executable: /usr/bin/pip3
+#    pip_package: python3-pip
    chromedriverURL_LINUX: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_linux64.zip
    chromedriverURL_WIN: https://chromedriver.storage.googleapis.com/92.0.4515.43/chromedriver_win32.zip
    mytext: |
@@ -13,7 +15,14 @@
    updatetest: |
 
   tasks:
-   - name: Install python pip
+   - name: Epel-release
+     yum:
+       name: epel-release
+       state: present
+       update_cache: yes
+     when: ansible_facts['os_family'] == "Amazon"
+     
+   - name: Install python pip 1
      yum:
        name: python-pip
        state: present
@@ -41,13 +50,6 @@
        state: present
        update_cache: yes
 
-   - name: Epel-release
-     yum:
-       name: epel-release
-       state: present
-       update_cache: yes
-     when: ansible_facts['os_family'] == "Amazon"
-
    - name: install chromium
      yum:
        name: chromium
@@ -65,23 +67,25 @@
        dest: /usr/local/bin
        remote_src: yes
 
-   - name: install docker
-     yum:
-       name: docker
-       state: present
+#    - name: install docker
+#      yum:
+#        name: docker
+#        state: present
        
-   - name: Start the container
-     docker_container:
-       name: phpwebsite
-       image: "shiva4983/phpwebsite:{{DOCKERID}}"
-       state: started
-       published_ports:
-         - 0.0.0.0:8080:8080
+#    - name: run docker as service
+#      service:
+#        name: docker
+#        state: started
+       
+#    - name: Start the container
+#      docker_container:
+#        name: phpwebsite
+#        image: "shiva4983/phpwebsite:{{DOCKERID}}"
+#        state: started
+#        published_ports:
+#          - 0.0.0.0:8080:8080
    
-  #  - name: run docker as service
-  #    service:
-  #      name: docker
-  #      state: started
+ 
 
 #Known issue with 2.9 resolved in 2.10 - https://github.com/DataDog/ansible-datadog/issues/289
   #  - name: download chromedriver for windows os
