@@ -71,12 +71,21 @@
 #      yum:
 #        name: docker
 #        state: present
+<<<<<<< HEAD
        
 #    - name: run docker as service
 #      service:
 #        name: docker
 #        state: started
        
+=======
+       
+#    - name: run docker as service
+#      service:
+#        name: docker
+#        state: started
+       
+>>>>>>> c9c59d31e144c40488b8a3ae1c469c9da31989de
 #    - name: Start the container
 #      docker_container:
 #        name: phpwebsite
@@ -99,4 +108,8 @@
   #      src: C:\Users\Administrator\chromedriver\chromedriver.zip
   #      dest: C:\Users\Administrator\chromedriver
   #      creates: C:\Users\Administrator\chromedriver
+<<<<<<< HEAD
   #    when: ansible_facts['os_family'] == "Windows"
+=======
+  #    when: ansible_facts['os_family'] == "Windows"
+>>>>>>> c9c59d31e144c40488b8a3ae1c469c9da31989de
