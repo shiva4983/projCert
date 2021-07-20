@@ -46,7 +46,7 @@
 
    - name: Install Chrome
      yum:
-       name: google-chrome-stable
+       name: google-chrome-beta
        state: present
        update_cache: yes
 
